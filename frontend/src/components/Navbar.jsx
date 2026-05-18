@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Sparkles, 
@@ -25,6 +25,9 @@ const Navbar = () => {
   const token = localStorage.getItem('token');
   const loginTime = localStorage.getItem('loginTime');
   const [elapsedTime, setElapsedTime] = useState(0);
+
+  // Custom Toast State
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
   useEffect(() => {
     if (token && loginTime) {
@@ -57,16 +60,66 @@ const Navbar = () => {
 
   const handleItemClick = (featureName) => {
     if (!token) {
-      alert(`To access "${featureName}", please log in or register for an ElevateHR account first. Redirecting to the login screen!`);
-      navigate('/login');
+      setToast({
+        show: true,
+        message: `To access "${featureName}", please log in or register first. Redirecting...`,
+        type: 'info'
+      });
+      setTimeout(() => {
+        setToast({ show: false, message: '', type: 'success' });
+        navigate('/login');
+      }, 2500);
     } else {
-      alert(`"${featureName}" has been loaded. Head to the Employee list on the Dashboard to see detailed metrics and run AI tools directly!`);
-      navigate('/dashboard');
+      setToast({
+        show: true,
+        message: `"${featureName}" has been successfully loaded! Viewing metrics on the dashboard.`,
+        type: 'success'
+      });
+      setTimeout(() => {
+        setToast({ show: false, message: '', type: 'success' });
+        navigate('/dashboard');
+      }, 2500);
     }
   };
 
   return (
     <nav className="bg-[#fffbeb] shadow-sm border-b border-amber-100 relative z-50">
+      {/* Custom Keyframe Styles for Toast Notification */}
+      <style>{`
+        @keyframes slide-in-toast {
+          0% { transform: translateY(-30px) scale(0.9); opacity: 0; }
+          100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .animate-toast {
+          animation: slide-in-toast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glass-toast {
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+      `}</style>
+
+      {/* Sleek Custom Glassmorphic Toast Notification */}
+      {toast.show && (
+        <div className="fixed top-6 right-6 z-[9999] animate-toast">
+          <div className={`p-4 rounded-2xl shadow-2xl border flex items-center gap-3.5 glass-toast max-w-sm transition-all ${
+            toast.type === 'success' 
+              ? 'border-emerald-200 text-emerald-950 shadow-emerald-900/5' 
+              : 'border-amber-200 text-amber-950 shadow-amber-900/5'
+          }`}>
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white shadow-sm shrink-0 ${
+              toast.type === 'success' ? 'bg-emerald-600' : 'bg-amber-600'
+            }`}>
+              {toast.type === 'success' ? '✓' : 'ℹ'}
+            </div>
+            <div className="text-sm font-bold leading-snug">
+              {toast.message}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Brand Logo */}
         <Link to="/" className="text-xl font-bold text-amber-700 tracking-tight flex items-center gap-2">
@@ -74,7 +127,7 @@ const Navbar = () => {
           ElevateHR
         </Link>
 
-        {/* Dynamic Center Navigation (Always visible for maximum SaaS aesthetic) */}
+        {/* Dynamic Center Navigation */}
         <div className="hidden lg:flex items-center space-x-1">
           {/* Analytics Dropdown */}
           <div className="relative group py-2">
