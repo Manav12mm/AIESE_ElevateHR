@@ -121,6 +121,60 @@ input, select, textarea {
   box-shadow: 0 6px 20px 0 rgba(217, 119, 6, 0.45) !important;
 }
 
+/* HIGH-READABILITY INTERACTIVE ELEMENT OVERRIDES FOR NIGHT MODE */
+.dark .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(244, 63, 94, 0.25) !important;
+}
+.dark .bg-rose-50:hover, .dark .bg-rose-100:hover {
+  background-color: rgba(244, 63, 94, 0.25) !important;
+  color: #fecdd3 !important;
+}
+.dark .bg-stone-50 {
+  background-color: #080c14 !important;
+  border-color: #1e293b !important;
+}
+.dark .bg-stone-100 {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important; /* brighter contrast for skill tags */
+}
+.dark .bg-stone-200 {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+.dark button.bg-stone-200:hover {
+  background-color: rgba(244, 63, 94, 0.2) !important;
+  color: #fca5a5 !important;
+}
+.dark .bg-amber-50 {
+  background-color: #0f1626 !important;
+  border-color: #1e293b !important;
+}
+.dark .text-amber-800 {
+  color: #fbbf24 !important;
+}
+.dark .text-amber-600\/70 {
+  color: #f59e0b !important;
+}
+.dark .bg-white\/60 {
+  background-color: rgba(15, 22, 38, 0.6) !important;
+  border-color: #1e293b !important;
+}
+.dark a.text-stone-600, .dark button.text-stone-600, .dark .text-stone-600 {
+  color: #cbd5e1 !important;
+}
+.dark a.text-stone-600:hover, .dark button.text-stone-600:hover {
+  color: #fbbf24 !important;
+}
+.dark .hover\:bg-stone-200\/55:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+.dark .text-amber-800.font-mono {
+  color: #fbbf24 !important;
+}
+
 /* Subtle transitions for sleek UX theme switcher */
 * {
   transition-property: background-color, border-color, color, text-decoration-color, fill, stroke, box-shadow;
