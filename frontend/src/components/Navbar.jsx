@@ -59,6 +59,19 @@ const Navbar = () => {
   };
 
   const handleItemClick = (featureName) => {
+    let viewParam = 'directory';
+    if (featureName === 'Performance Charts' || featureName === 'Department Comparison' || featureName === 'Score Distribution') {
+      viewParam = 'analytics';
+    } else if (featureName === 'Promotion Suggestions' || featureName === 'Improvement Feedback' || featureName === 'AI Summaries') {
+      viewParam = 'ai';
+    } else if (featureName === 'Recommended Courses' || featureName === 'Skill Gaps') {
+      viewParam = 'training';
+    } else if (featureName === 'Export PDF/CSV' || featureName === 'Monthly Reports') {
+      viewParam = 'reports';
+    } else if (featureName === 'Top Employees by Score' || featureName === 'Department Rankings') {
+      viewParam = 'rankings';
+    }
+
     if (!token) {
       setToast({
         show: true,
@@ -72,13 +85,13 @@ const Navbar = () => {
     } else {
       setToast({
         show: true,
-        message: `"${featureName}" has been successfully loaded! Viewing metrics on the dashboard.`,
+        message: `"${featureName}" has been successfully loaded!`,
         type: 'success'
       });
       setTimeout(() => {
         setToast({ show: false, message: '', type: 'success' });
-        navigate('/dashboard');
-      }, 2500);
+        navigate(`/dashboard?view=${viewParam}`);
+      }, 1000);
     }
   };
 
