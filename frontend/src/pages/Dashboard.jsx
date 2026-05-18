@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { 
   Search, 
@@ -32,12 +32,23 @@ const Dashboard = () => {
 
   const token = localStorage.getItem('token');
 
+  const searchInputRef = useRef(null);
+
   // Read view from URL search query parameters (e.g. ?view=analytics)
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const viewParam = queryParams.get('view');
+    const focusParam = queryParams.get('focus');
+
     if (viewParam && ['directory', 'analytics', 'ai', 'training', 'reports', 'rankings'].includes(viewParam)) {
       setActiveView(viewParam);
+    }
+
+    if (focusParam === 'search' && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current.focus();
+        searchInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
     }
   }, [window.location.search]);
 
@@ -490,7 +501,8 @@ const Dashboard = () => {
 
         {activeView === 'directory' && (
           <form onSubmit={handleSearch} className="flex gap-2 shrink-0">
-            <input 
+             <input 
+              ref={searchInputRef}
               type="text" 
               placeholder="Search by Department..." 
               className="px-4 py-2 border border-stone-200 bg-stone-50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 transition-shadow text-sm"

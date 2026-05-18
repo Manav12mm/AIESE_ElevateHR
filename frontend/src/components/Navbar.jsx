@@ -59,17 +59,9 @@ const Navbar = () => {
   };
 
   const handleItemClick = (featureName) => {
-    let viewParam = 'directory';
-    if (featureName === 'Performance Charts' || featureName === 'Department Comparison' || featureName === 'Score Distribution') {
-      viewParam = 'analytics';
-    } else if (featureName === 'Promotion Suggestions' || featureName === 'Improvement Feedback' || featureName === 'AI Summaries') {
-      viewParam = 'ai';
-    } else if (featureName === 'Recommended Courses' || featureName === 'Skill Gaps') {
-      viewParam = 'training';
-    } else if (featureName === 'Export PDF/CSV' || featureName === 'Monthly Reports') {
-      viewParam = 'reports';
-    } else if (featureName === 'Top Employees by Score' || featureName === 'Department Rankings') {
-      viewParam = 'rankings';
+    let targetPath = '/dashboard?view=directory';
+    if (featureName === 'Search & Filters') {
+      targetPath = '/dashboard?view=directory&focus=search';
     }
 
     if (!token) {
@@ -90,7 +82,7 @@ const Navbar = () => {
       });
       setTimeout(() => {
         setToast({ show: false, message: '', type: 'success' });
-        navigate(`/dashboard?view=${viewParam}`);
+        navigate(targetPath);
       }, 1000);
     }
   };
@@ -140,7 +132,40 @@ const Navbar = () => {
           ElevateHR
         </Link>
 
-
+        {/* Dynamic Center Navigation */}
+        <div className="hidden lg:flex items-center space-x-1">
+          {/* Employees Dropdown */}
+          <div className="relative group py-2">
+            <button 
+              className="flex items-center gap-1.5 text-stone-700 hover:text-amber-700 font-semibold transition-colors px-3.5 py-2 rounded-lg group-hover:bg-amber-100/50 cursor-pointer"
+            >
+              Employees <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-xl shadow-xl border border-stone-200 p-3 space-y-1 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+              <button onClick={() => handleItemClick('Employee List')} className="w-full flex items-center gap-3 p-2.5 rounded-lg hover:bg-amber-50 text-left text-stone-700 hover:text-amber-900 transition-colors cursor-pointer">
+                <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold">📋</div>
+                <div>
+                  <div className="text-sm font-semibold">Employee List</div>
+                  <div className="text-xs text-stone-500">View all registered members</div>
+                </div>
+              </button>
+              <button onClick={() => handleItemClick('Search & Filters')} className="w-full flex items-center gap-3 p-2.5 rounded-lg hover:bg-amber-50 text-left text-stone-700 hover:text-amber-900 transition-colors cursor-pointer">
+                <div className="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center font-bold">🔍</div>
+                <div>
+                  <div className="text-sm font-semibold">Search & Filters</div>
+                  <div className="text-xs text-stone-500">Filter list by departments</div>
+                </div>
+              </button>
+              <Link to="/add-employee" className="w-full flex items-center gap-3 p-2.5 rounded-lg hover:bg-rose-50 text-left text-stone-700 hover:text-rose-900 transition-colors cursor-pointer">
+                <div className="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold">➕</div>
+                <div>
+                  <div className="text-sm font-semibold">Add Employee</div>
+                  <div className="text-xs text-stone-500">Register new team profile</div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
 
         {/* Right Navigation Controls */}
         <div className="flex items-center space-x-3">
