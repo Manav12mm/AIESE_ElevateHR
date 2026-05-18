@@ -22,12 +22,12 @@
   --bg-color: #050506; /* Deep obsidian carbon black background */
   --text-color: #f8fafc; /* Slate-50 bright text */
   --card-bg: #0c0b0c; /* Charcoal dark card */
-  --card-border: #211314; /* Cyber-red slate border */
+  --card-border: #3b1d20; /* Cyberpunk glowing crimson border for strong definition */
   --navbar-bg: #050506; /* Matching carbon black Navbar */
-  --navbar-border: #211314; /* Matching Cyber-red border */
+  --navbar-border: #3b1d20; /* Matching crimson-red border */
   --text-muted: #a1a1aa; /* Zinc-400 readable gray */
   --input-bg: #0c0b0c; /* Matching deep input */
-  --input-border: #211314; /* Cyber-red borders */
+  --input-border: #3b1d20; /* Matching crimson-red border */
   --dashboard-header-bg: #0c0b0c;
 }
 
@@ -138,8 +138,8 @@ body {
 }
 
 .dark .bg-white {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.95), 0 0 20px rgba(225, 29, 72, 0.03) !important;
+  border: 1.5px solid var(--card-border) !important;
 }
 
 .bg-\[\#fffbeb\] {
@@ -148,8 +148,15 @@ body {
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.border-stone-100, .border-stone-200 {
+.dark .bg-\[\#fffbeb\] {
+  background-color: #0c0b0c !important;
+  border: 1.5px solid #e11d48 !important; /* Brighter glowing red outline for the AI Assistant panel! */
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.95), 0 0 25px rgba(225, 29, 72, 0.1) !important;
+}
+
+.dark .border-stone-100, .dark .border-stone-200, .dark .border-stone-300, .dark .divide-stone-100 > * + * {
   border-color: var(--card-border) !important;
+  border-width: 1.2px !important;
 }
 
 .bg-stone-50 {
