@@ -80,6 +80,40 @@ const Home = () => {
     }, 3000);
   };
 
+  const [activeWhy, setActiveWhy] = useState(2);
+  const whyItems = [
+    {
+      number: "01",
+      tag: "TOTAL VISION",
+      title: "STANDINGS",
+      desc: "Get an instant, visual standing leaderboard of all registered team members sorted by metric indexes."
+    },
+    {
+      number: "02",
+      tag: "AI ASSISTANT",
+      title: "INTELLIGENCE",
+      desc: "Deploy automated, bias-free promotional reviews and technical roadmaps compiled by Generative AI pipelines."
+    },
+    {
+      number: "03",
+      tag: "THE GRID",
+      title: "NETWORK",
+      desc: "Connect, view interactions, and map team collaboration patterns in a unified directory workspace."
+    },
+    {
+      number: "04",
+      tag: "L&D RADAR",
+      title: "RETENTION",
+      desc: "Keep team members engaged by detecting technical skill gaps and suggesting relevant coursework instantly."
+    },
+    {
+      number: "05",
+      tag: "PREDICTIVE",
+      title: "PROMOTIONS",
+      desc: "Pinpoint your future directors and technical architects using deep performance data analysis."
+    }
+  ];
+
   const testimonials = [
     {
       name: "Sarah Jenkins",
@@ -324,62 +358,147 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* 🏎️ ABOUT ELEVATEHR SECTION (F1 HIGH-ENERGY STATS CONSOLE STYLE) 🏎️ */}
       <section id="about" className="max-w-6xl mx-auto px-4 scroll-mt-24 space-y-16">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 bg-stone-100 border border-stone-200 text-stone-700 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">
-            <Target size={14} className="text-stone-500" /> Executive Ecosystem
-          </div>
-          <h2 className="text-4xl font-extrabold text-stone-900 tracking-tight">
-            How ElevateHR Redefines Success
+        <div className="text-center space-y-3">
+          <h2 className="text-4xl md:text-6xl font-black tracking-widest text-center uppercase font-mono bg-gradient-to-r from-stone-950 via-stone-700 to-stone-950 dark:from-white dark:via-stone-300 dark:to-white bg-clip-text text-transparent">
+            ABOUT ELEVATEHR
           </h2>
-          <p className="text-stone-600 text-lg leading-relaxed">
-            We bridge the gap between static spreadsheet records and generative AI strategies, empowering administrators to cultivate and retain top-tier team members easily.
+          <p className="text-center text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-rose-600 dark:text-rose-500">
+            BUILT FOR LEADERS WHO VALUE PERFORMANCE & SPEED
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1 */}
-          <div className="glass-card glow-hover p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 space-y-5 group hover:border-amber-400 hover:-translate-y-2">
-            <div className="w-14 h-14 bg-amber-50 rounded-2xl border border-amber-100 flex items-center justify-center text-amber-600 group-hover:bg-gradient-to-br group-hover:from-amber-500 group-hover:to-orange-500 group-hover:text-white transition-all shadow-sm">
-              <Users size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 group-hover:text-amber-800 transition-colors">Unified Talent Profiles</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Consolidate team skills, history, and real-time scores into highly structured, search-optimized visual directories with secure local storage caches.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Columns - High Energy Copy */}
+          <div className="lg:col-span-7 space-y-6 text-stone-600 dark:text-stone-300 text-base md:text-lg leading-relaxed">
+            <p>
+              ElevateHR is a high-energy <span className="font-bold text-rose-600 dark:text-rose-400">performance analytics engine</span> designed for team builders who love <span className="font-bold text-rose-600 dark:text-rose-400">shipping fast</span>, thinking creatively, and working within real constraints.
             </p>
-            <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-amber-700">
-              Explore Profiles <Zap size={12} className="animate-bounce" />
-            </div>
+            <p>
+              Teams get a <span className="font-bold text-rose-600 dark:text-rose-400">real-time skill mapping vector</span> + a robust <span className="font-bold text-rose-600 dark:text-rose-400">intelligent promotion roadmap</span> calculated dynamically by generative AI. No manual spreadsheet manipulation.
+            </p>
+            <p>
+              The system scales dynamically across two environments: a warm, secure light interface and an intensive, obsidian-obsidian <span className="font-bold text-rose-600 dark:text-rose-400">performance dark mode</span>.
+            </p>
           </div>
 
-          {/* Card 2 */}
-          <div className="glass-card glow-hover p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 space-y-5 group hover:border-rose-400 hover:-translate-y-2">
-            <div className="w-14 h-14 bg-rose-50 rounded-2xl border border-rose-100 flex items-center justify-center text-rose-600 group-hover:bg-gradient-to-br group-hover:from-rose-500 group-hover:to-pink-500 group-hover:text-white transition-all shadow-sm">
-              <Award size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 group-hover:text-rose-800 transition-colors">AI-Powered Evaluations</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Leverage secure Generative AI pipelines to deliver unbiased promotion metrics, department rankings, and insightful growth suggestions in seconds.
-            </p>
-            <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-rose-700">
-              Generate AI Insights <Zap size={12} className="animate-bounce" />
-            </div>
-          </div>
+          {/* Right Column - F1 Style Stats Box */}
+          <div className="lg:col-span-5">
+            <div className="bg-[#0c0b0c] border-2 border-[#3b1d20] rounded-3xl p-8 flex flex-col justify-between items-center text-center relative overflow-hidden shadow-2xl min-h-[350px]">
+              {/* High-tech ambient grid lines */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(225,29,72,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(225,29,72,0.02)_1px,transparent_1px)] bg-[size:2rem_2rem]"></div>
+              
+              <div className="w-full flex justify-between items-center text-[10px] font-mono tracking-widest text-stone-500 uppercase z-10">
+                <span>ELEVATEHR // ENGINE_01</span>
+                <span className="text-rose-500 font-bold flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span> LIVE ENGINE</span>
+              </div>
 
-          {/* Card 3 */}
-          <div className="glass-card glow-hover p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 space-y-5 group hover:border-emerald-400 hover:-translate-y-2">
-            <div className="w-14 h-14 bg-emerald-50 rounded-2xl border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-gradient-to-br group-hover:from-emerald-500 group-hover:to-teal-500 group-hover:text-white transition-all shadow-sm">
-              <BookOpen size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">Personalized L&D Suggestions</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Instantly identify core skill deficits and let our integrated OpenRouter model design customized roadmap curricula for individual technical gaps.
-            </p>
-            <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-emerald-700">
-              Curate Courses <Zap size={12} className="animate-bounce" />
+              {/* Connected Talent Nodes SVG Graphic */}
+              <div className="relative my-6 z-10 flex items-center justify-center">
+                <svg className="w-32 h-32 text-rose-600/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1">
+                  <circle cx="50" cy="50" r="10" className="fill-rose-500/10 stroke-rose-500/40 animate-pulse" />
+                  <line x1="50" y1="50" x2="20" y2="20" className="stroke-rose-500/30" strokeWidth="0.75" />
+                  <line x1="50" y1="50" x2="80" y2="20" className="stroke-rose-500/30" strokeWidth="0.75" />
+                  <line x1="50" y1="50" x2="80" y2="80" className="stroke-rose-500/30" strokeWidth="0.75" />
+                  <line x1="50" y1="50" x2="20" y2="80" className="stroke-rose-500/30" strokeWidth="0.75" />
+                  
+                  <circle cx="20" cy="20" r="4.5" className="fill-[#0c0b0c] stroke-rose-500" strokeWidth="1.5" />
+                  <circle cx="80" cy="20" r="4.5" className="fill-[#0c0b0c] stroke-rose-500" strokeWidth="1.5" />
+                  <circle cx="80" cy="80" r="4.5" className="fill-[#0c0b0c] stroke-rose-500 animate-ping" style={{ animationDuration: '3.5s' }} />
+                  <circle cx="80" cy="80" r="4.5" className="fill-[#0c0b0c] stroke-rose-500" strokeWidth="1.5" />
+                  <circle cx="20" cy="80" r="4.5" className="fill-[#0c0b0c] stroke-rose-500" strokeWidth="1.5" />
+                </svg>
+              </div>
+
+              <div className="space-y-1 z-10">
+                <div className="text-6xl md:text-7xl font-mono font-black text-rose-600 drop-shadow-[0_0_15px_rgba(225,29,72,0.4)] animate-pulse">
+                  10x
+                </div>
+                <div className="text-xs font-mono font-bold tracking-[0.25em] text-white uppercase mt-2">
+                  FASTER HR ANALYTICS
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 🏁 WHY ELEVATEHR SECTION (LIQUID ACCORDION HOVER CARDS) 🏁 */}
+      <section id="why" className="max-w-6xl mx-auto px-4 scroll-mt-24 space-y-12">
+        <div className="text-center space-y-3">
+          <h2 className="text-4xl md:text-6xl font-black tracking-widest text-center uppercase font-mono bg-gradient-to-r from-stone-950 via-stone-700 to-stone-950 dark:from-white dark:via-stone-300 dark:to-white bg-clip-text text-transparent">
+            WHY ELEVATEHR
+          </h2>
+          <p className="text-center text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-rose-600 dark:text-rose-500">
+            YOUR PATH TO THE WINNERS PODIUM
+          </p>
+        </div>
+
+        {/* Liquid Horizontal Accordion Panel group */}
+        <div className="flex flex-col lg:flex-row items-stretch gap-3 min-h-[380px] w-full overflow-hidden select-none">
+          {whyItems.map((item, idx) => {
+            const isActive = activeWhy === idx;
+            return (
+              <div
+                key={idx}
+                onMouseEnter={() => setActiveWhy(idx)}
+                className={`relative rounded-2xl p-6 lg:p-8 flex flex-col justify-between overflow-hidden cursor-pointer border transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${
+                  isActive
+                    ? 'flex-[3] bg-[#0c0b0c] border-[#e11d48] border-2 shadow-2xl shadow-rose-950/20'
+                    : 'flex-[0.8] bg-[#050506]/95 border-stone-850 hover:border-rose-900/40'
+                }`}
+              >
+                {/* Huge Watermark Digit in Background */}
+                <div className={`absolute right-4 bottom-2 text-[8rem] lg:text-[11rem] font-mono font-black select-none pointer-events-none leading-none transition-all duration-500 ${
+                  isActive ? 'text-rose-500/5 translate-y-0 scale-100' : 'text-stone-900/20 translate-y-4 scale-95'
+                }`}>
+                  {item.number}
+                </div>
+
+                {/* Top Bar Card Meta */}
+                <div className="w-full flex items-center justify-between z-10">
+                  <span className={`text-[10px] font-mono font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${
+                    isActive ? 'text-rose-500' : 'text-stone-600'
+                  }`}>
+                    {isActive ? `— ${item.tag}` : item.number}
+                  </span>
+                  {!isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-stone-700"></span>
+                  )}
+                </div>
+
+                {/* Dynamic Content Presentation */}
+                {isActive ? (
+                  // Active expanded details
+                  <div className="space-y-4 pr-12 z-10 transition-all duration-300">
+                    <h3 className="text-3xl lg:text-4xl font-mono font-black text-white uppercase tracking-wider leading-none">
+                      {item.title}
+                    </h3>
+                    <p className="text-stone-400 text-sm md:text-base leading-relaxed max-w-lg">
+                      {item.desc}
+                    </p>
+                  </div>
+                ) : (
+                  // Inactive collapsed vertical text label
+                  <div className="hidden lg:flex items-center justify-center h-full w-full rotate-180 writing-mode-vertical">
+                    <h4 className="font-mono font-black text-sm text-stone-500 uppercase tracking-[0.25em] whitespace-nowrap">
+                      {item.title}
+                    </h4>
+                  </div>
+                )}
+
+                {/* For mobile view when inactive: render standard simple label */}
+                {!isActive && (
+                  <div className="block lg:hidden z-10 mt-4">
+                    <h4 className="font-mono font-black text-base text-stone-400 uppercase tracking-widest">
+                      {item.title}
+                    </h4>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 

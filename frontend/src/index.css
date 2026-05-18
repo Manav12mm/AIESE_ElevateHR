@@ -300,6 +300,12 @@ input, select, textarea {
   background-color: #211314 !important;
 }
 
+/* Vertical text rotation utility for why accordion items */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
 /* ☄️ SUBTLE TRANSITIONS FOR LIQUID UX THEME SWITCHER ☄️ */
 * {
   transition-property: background-color, border-color, color, text-decoration-color, fill, stroke, box-shadow;
