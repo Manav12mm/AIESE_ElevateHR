@@ -354,6 +354,17 @@ input, select, textarea {
   color: #fda4af !important;
 }
 
+/* Dark Mode Row & Card Hover Background Fixes */
+.dark .hover\:bg-stone-50:hover {
+  background-color: #0c0b0c !important;
+}
+.dark .hover\:bg-stone-100:hover {
+  background-color: #1a1516 !important;
+}
+.dark .hover\:bg-stone-200:hover {
+  background-color: #211314 !important;
+}
+
 /* ☄️ SUBTLE TRANSITIONS FOR LIQUID UX THEME SWITCHER ☄️ */
 * {
   transition-property: background-color, border-color, color, text-decoration-color, fill, stroke, box-shadow;
