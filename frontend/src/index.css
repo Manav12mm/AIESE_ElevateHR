@@ -190,6 +190,65 @@ input, select, textarea {
   color: #cbd5e1 !important;
 }
 
+/* Homepage Specific Dark Mode Overrides */
+.dark .bg-\[\#fafaf9\] {
+  background-color: var(--bg-color) !important;
+}
+.dark .bg-white\/50 {
+  background-color: rgba(15, 22, 38, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+}
+.dark .shadow-stone-100\/50 {
+  box-shadow: none !important;
+}
+.dark .border-stone-200\/40 {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+.dark .bg-\[linear-gradient\(to_right\,\#e7e5e435_1px\,transparent_1px\)\,linear-gradient\(to_bottom\,\#e7e5e435_1px\,transparent_1px\)\] {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+}
+.dark .bg-white.border-stone-200 {
+  background-color: #0f1626 !important;
+  border-color: #1e293b !important;
+}
+.dark .bg-white.border-stone-200:hover {
+  border-color: #f59e0b !important;
+}
+.dark .border-stone-200\/60 {
+  border-color: #1e293b !important;
+}
+.dark .border-stone-200 {
+  border-color: #1e293b !important;
+}
+.dark .bg-stone-50 {
+  background-color: #080c14 !important;
+}
+.dark .text-stone-950 {
+  color: #fafafa !important;
+}
+.dark .bg-white\/95 {
+  background-color: #0f1626 !important;
+  border-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+.dark .bg-white\/95:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+.dark .bg-gradient-to-r.from-amber-100.to-orange-100 {
+  background-image: linear-gradient(to right, rgba(217, 119, 6, 0.15), rgba(249, 115, 22, 0.15)) !important;
+  border-color: rgba(249, 115, 22, 0.3) !important;
+  color: #fca5a5 !important;
+}
+.dark .bg-rose-50.border-rose-200 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  border-color: rgba(244, 63, 94, 0.3) !important;
+  color: #fecdd3 !important;
+}
+
 /* Subtle transitions for sleek UX theme switcher */
 * {
   transition-property: background-color, border-color, color, text-decoration-color, fill, stroke, box-shadow;
