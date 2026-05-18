@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Users, Award, BookOpen, Star, Send, ArrowRight, Zap, Target, ShieldCheck, Database, Brain, ArrowDown } from 'lucide-react';
+import { Sparkles, Users, Award, BookOpen, Star, Send, ArrowRight, Zap, Target, ShieldCheck, Database, Brain, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Home = () => {
   const token = localStorage.getItem('token');
@@ -114,6 +114,13 @@ const Home = () => {
     }
   ];
 
+  const prevSlide = () => {
+    setActiveWhy((prev) => (prev === 0 ? whyItems.length - 1 : prev - 1));
+  };
+  const nextSlide = () => {
+    setActiveWhy((prev) => (prev === whyItems.length - 1 ? 0 : prev + 1));
+  };
+
   const testimonials = [
     {
       name: "Sarah Jenkins",
@@ -177,6 +184,20 @@ const Home = () => {
         }
         .console-glow {
           box-shadow: inset 0 0 20px rgba(217, 119, 6, 0.05);
+        }
+        .carousel-container {
+          --card-step: 316px;
+          --card-half: 150px;
+        }
+        @media (min-width: 768px) {
+          .carousel-container {
+            --card-step: 384px;
+            --card-half: 180px;
+          }
+        }
+        .carousel-track {
+          transform: translateX(calc(50% - (var(--active-why) * var(--card-step)) - var(--card-half)));
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
       `}</style>
 
@@ -424,8 +445,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 🏁 WHY ELEVATEHR SECTION (LIQUID ACCORDION HOVER CARDS) 🏁 */}
-      <section id="why" className="max-w-6xl mx-auto px-4 scroll-mt-24 space-y-12">
+      {/* 🏁 WHY ELEVATEHR SECTION (GAMING DASHBOARD SLIDING CAROUSEL) 🏁 */}
+      <section id="why" className="max-w-6xl mx-auto px-4 scroll-mt-24 space-y-12 relative overflow-hidden carousel-container">
         <div className="text-center space-y-3">
           <h2 className="text-4xl md:text-6xl font-black tracking-widest text-center uppercase font-mono bg-gradient-to-r from-stone-950 via-stone-700 to-stone-950 dark:from-white dark:via-stone-300 dark:to-white bg-clip-text text-transparent">
             WHY ELEVATEHR
@@ -435,70 +456,110 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Liquid Horizontal Accordion Panel group */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-3 min-h-[380px] w-full overflow-hidden select-none">
-          {whyItems.map((item, idx) => {
-            const isActive = activeWhy === idx;
-            return (
-              <div
-                key={idx}
-                onMouseEnter={() => setActiveWhy(idx)}
-                className={`relative rounded-2xl p-6 lg:p-8 flex flex-col justify-between overflow-hidden cursor-pointer border transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${
-                  isActive
-                    ? 'flex-[3] bg-[#0c0b0c] border-[#e11d48] border-2 shadow-2xl shadow-rose-950/20'
-                    : 'flex-[0.8] bg-[#050506]/95 border-stone-850 hover:border-rose-900/40'
-                }`}
-              >
-                {/* Huge Watermark Digit in Background */}
-                <div className={`absolute right-4 bottom-2 text-[8rem] lg:text-[11rem] font-mono font-black select-none pointer-events-none leading-none transition-all duration-500 ${
-                  isActive ? 'text-rose-500/5 translate-y-0 scale-100' : 'text-stone-900/20 translate-y-4 scale-95'
-                }`}>
-                  {item.number}
-                </div>
-
-                {/* Top Bar Card Meta */}
-                <div className="w-full flex items-center justify-between z-10">
-                  <span className={`text-[10px] font-mono font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${
-                    isActive ? 'text-rose-500' : 'text-stone-600'
-                  }`}>
-                    {isActive ? `— ${item.tag}` : item.number}
-                  </span>
-                  {!isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-stone-700"></span>
+        {/* Viewport for horizontal track */}
+        <div className="relative w-full overflow-hidden select-none min-h-[440px] px-4">
+          <div 
+            className="carousel-track flex gap-4 md:gap-6 py-6"
+            style={{ '--active-why': activeWhy }}
+          >
+            {whyItems.map((item, idx) => {
+              const isActive = activeWhy === idx;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => setActiveWhy(idx)}
+                  className={`w-[300px] md:w-[360px] h-[370px] shrink-0 relative rounded-3xl p-8 flex flex-col justify-between overflow-hidden border-2 cursor-pointer transition-all duration-500 ${
+                    isActive
+                      ? 'border-[#e11d48] bg-[#0c0b0c] scale-105 opacity-100 z-10 shadow-[0_0_35px_rgba(225,29,72,0.18)]'
+                      : 'border-stone-850 bg-[#050506]/95 scale-95 opacity-30 hover:opacity-60 hover:border-rose-950/40 z-0'
+                  }`}
+                >
+                  {/* Glowing gaming HUD corner brackets (Active Only) */}
+                  {isActive && (
+                    <>
+                      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-rose-500 rounded-tl-2xl"></div>
+                      <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-rose-500 rounded-tr-2xl"></div>
+                      <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-rose-500 rounded-bl-2xl"></div>
+                      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-rose-500 rounded-br-2xl"></div>
+                    </>
                   )}
-                </div>
 
-                {/* Dynamic Content Presentation */}
-                {isActive ? (
-                  // Active expanded details
-                  <div className="space-y-4 pr-12 z-10 transition-all duration-300">
-                    <h3 className="text-3xl lg:text-4xl font-mono font-black text-white uppercase tracking-wider leading-none">
+                  {/* Translucent Gaming Watermark Digit */}
+                  <div className={`absolute right-4 bottom-6 text-[8rem] md:text-[10rem] font-mono font-black select-none pointer-events-none leading-none transition-all duration-500 ${
+                    isActive ? 'text-rose-500/5 scale-100' : 'text-stone-900/10 scale-95'
+                  }`}>
+                    {item.number}
+                  </div>
+
+                  {/* HUD Top bar */}
+                  <div className="w-full flex items-center justify-between z-10">
+                    <span className={`text-[10px] font-mono font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${
+                      isActive ? 'text-rose-500' : 'text-stone-600'
+                    }`}>
+                      {isActive ? `// SYS_ACTIVE` : `// SYS_STANDBY`}
+                    </span>
+                    <span className={`text-[10px] font-mono font-bold transition-colors duration-300 ${
+                      isActive ? 'text-rose-500' : 'text-stone-700'
+                    }`}>
+                      {item.number}
+                    </span>
+                  </div>
+
+                  {/* Title and descriptions */}
+                  <div className="space-y-3 pr-4 z-10 mt-6 flex-grow">
+                    <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-rose-500 uppercase block">
+                      {item.tag}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-mono font-black text-white uppercase tracking-wider leading-none">
                       {item.title}
                     </h3>
-                    <p className="text-stone-400 text-sm md:text-base leading-relaxed max-w-lg">
+                    <p className="text-stone-400 text-xs md:text-sm leading-relaxed mt-2 line-clamp-4">
                       {item.desc}
                     </p>
                   </div>
-                ) : (
-                  // Inactive collapsed vertical text label
-                  <div className="hidden lg:flex items-center justify-center h-full w-full rotate-180 writing-mode-vertical">
-                    <h4 className="font-mono font-black text-sm text-stone-500 uppercase tracking-[0.25em] whitespace-nowrap">
-                      {item.title}
-                    </h4>
-                  </div>
-                )}
 
-                {/* For mobile view when inactive: render standard simple label */}
-                {!isActive && (
-                  <div className="block lg:hidden z-10 mt-4">
-                    <h4 className="font-mono font-black text-base text-stone-400 uppercase tracking-widest">
-                      {item.title}
-                    </h4>
+                  {/* Bottom Telemetry Status bar */}
+                  <div className="w-full flex justify-between items-center text-[8px] font-mono text-stone-500 border-t border-stone-850 pt-4 z-10">
+                    <span>SECTOR_0{item.number}</span>
+                    <span className={isActive ? 'text-rose-500 animate-pulse' : ''}>
+                      {isActive ? '● STATUS: FULL_INFERENCE' : '● STATUS: IDLE'}
+                    </span>
                   </div>
-                )}
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Premium Glowing gamer navigation Chevrons */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#0c0b0c]/90 border border-[#3b1d20] hover:border-[#e11d48] text-stone-500 hover:text-white flex items-center justify-center transition-all z-20 group backdrop-blur-sm cursor-pointer shadow-lg shadow-black/80"
+            title="PREVIOUS INDEX"
+          >
+            <ChevronLeft className="group-hover:-translate-x-0.5 transition-transform" size={20} />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#0c0b0c]/90 border border-[#3b1d20] hover:border-[#e11d48] text-stone-500 hover:text-white flex items-center justify-center transition-all z-20 group backdrop-blur-sm cursor-pointer shadow-lg shadow-black/80"
+            title="NEXT INDEX"
+          >
+            <ChevronRight className="group-hover:translate-x-0.5 transition-transform" size={20} />
+          </button>
+        </div>
+
+        {/* Dynamic gamer progress dot dashes */}
+        <div className="flex justify-center items-center gap-2 mt-4 z-10 relative">
+          {whyItems.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveWhy(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                activeWhy === idx ? 'w-8 bg-[#e11d48] shadow-[0_0_10px_rgba(225,29,72,0.5)]' : 'w-2 bg-stone-850 hover:bg-stone-700'
+              }`}
+              title={`SLIDE 0${idx + 1}`}
+            />
+          ))}
         </div>
       </section>
 
