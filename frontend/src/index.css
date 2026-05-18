@@ -6,19 +6,6 @@
 */
 
 :root {
-  --bg-color: #fafaf9; /* stone-50 */
-  --text-color: #292524; /* stone-800 */
-  --card-bg: #ffffff;
-  --card-border: #f5f5f4;
-  --navbar-bg: #fffbeb; /* amber-50 */
-  --navbar-border: #fef3c7; /* amber-100 */
-  --text-muted: #78716c;
-  --input-bg: #fafaf9;
-  --input-border: #e7e5e4;
-  --dashboard-header-bg: #ffffff;
-}
-
-.dark {
   --bg-color: #050506; /* Deep obsidian carbon black background */
   --text-color: #f8fafc; /* Slate-50 bright text */
   --card-bg: #0c0b0c; /* Charcoal dark card */
@@ -31,6 +18,7 @@
   --dashboard-header-bg: #0c0b0c;
 }
 
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -39,22 +27,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Beautiful dynamic background highlights */
 body {
-  /* Light mode warm amber highlights */
-  background-image: 
-    radial-gradient(circle at top right, rgba(217, 119, 6, 0.05), transparent 450px),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.03), transparent 450px);
-  background-attachment: fixed;
-}
-
-.dark body {
-  /* Dark mode crimson red ambient highlights */
+  /* Dynamic glowing cyber-red highlights natively on startup */
   background-image: 
     radial-gradient(circle at top right, rgba(239, 68, 68, 0.09), transparent 450px),
     radial-gradient(circle at bottom left, rgba(244, 63, 94, 0.05), transparent 450px);
   background-attachment: fixed;
 }
+
 
 
 /* 🔴 DARK MODE BRAND REDIRECTS: FORCE AMBER/ORANGE TO RED/CRIMSON 🔴 */

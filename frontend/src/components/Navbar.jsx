@@ -25,21 +25,11 @@ import {
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [theme]);
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
   const loginTime = localStorage.getItem('loginTime');
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -160,14 +150,6 @@ const Navbar = () => {
 
         {/* Right Navigation Controls */}
         <div className="flex items-center space-x-3">
-          {/* Theme Toggle Button */}
-          <button 
-            onClick={toggleTheme}
-            className="w-10 h-10 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center justify-center hover:bg-stone-50 hover:border-amber-200 transition-all text-stone-700 hover:text-amber-700 cursor-pointer shrink-0"
-            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-          >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
           {token ? (
             <>
               {/* Session Tracker */}
