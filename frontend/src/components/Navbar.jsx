@@ -144,9 +144,16 @@ const Navbar = () => {
 
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Brand Logo */}
-        <Link to="/" className="text-xl font-bold text-amber-700 tracking-tight flex items-center gap-2">
-          <span className="bg-amber-600 text-white p-1.5 rounded-lg shadow-sm shadow-amber-600/20">✨</span>
-          ElevateHR
+        <Link to="/" className="text-xl font-bold text-amber-700 tracking-tight flex items-center gap-2.5">
+          <div className="bg-amber-600 text-white p-1.5 rounded-xl shadow-md shadow-amber-600/30 flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+              <path d="M17 21v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2" />
+              <circle cx="11" cy="7" r="3" />
+              <path d="M23 21v-2a3 3 0 0 0-3-3h-1" />
+              <circle cx="20" cy="8" r="2" />
+            </svg>
+          </div>
+          <span className="dark:text-amber-500 transition-colors">ElevateHR</span>
         </Link>
 
 
